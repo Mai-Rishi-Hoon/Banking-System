@@ -1,0 +1,181 @@
+import java.util.*;
+import java.io.*;
+class Window{
+    public void wind1(){
+        System.out.println("Welcome to Banking System !!!");
+        // System.out.println("1. Sign Up");
+        System.out.println("1. Sign In");
+        // System.out.println("3. Delete Account");
+        System.out.println("2. Exit");
+        System.out.println("Enter your choice:- ");
+    }
+
+    public void wind2(){
+        System.out.println("Welcome to Banking System !!!\n");
+        // System.out.println("1. Create Bank Account");
+        // System.out.println("2. Delete Bank Account");
+        System.out.println("1. Check Bank Account Details");
+        System.out.println("2. Deposit Money");
+        System.out.println("3. Withdraw Money");
+        System.out.println("4. Transfer Money");
+        System.out.println("5. Exit"); 
+        // System.out.println("Enter your choice:- ");  
+        Outline o = new Outline();
+        o.wind2();
+        
+    }
+}
+
+class Det{
+    String name;
+    String email;
+    String pass;
+
+    public Det(String name, String email, String pass){
+        this.name=name;
+        this.email=email;
+        this.pass=pass;
+        System.out.println("Name;- "+name+" Email:- "+email+" Pass:- "+pass);
+    }
+    
+}
+
+class Adet{
+    String name;
+    long accno;
+    long phno;
+    String email;
+    String pass;
+    long bal;
+    
+    public Adet(String name, long accno, long phno, String email, long bal){
+        this.name=name;
+        this.accno=accno;
+        this.phno=phno;
+        this.email=email;
+        this.bal=bal;
+        System.out.println("Name:- "+name+"Accno:- "+accno+"Phno:- "+phno+"Email:- "+email+"Bal:- "+bal);
+    }
+}
+
+class Outline
+{
+    public void wind2()
+    {
+        Adet a1 = new Adet("Ram",1234567890L,9876543210L,"abc@gmail.com",50000L);
+        Adet a2 = new Adet("Shyam",9876543210L,1234567890L,"ss@gmail.com",50000L);
+        Adet a3 = new Adet("Ramesh",9713685249L,9517538624L,"ramesh@gmail.com",50000L);
+        Adet a4 = new Adet("Ram",1596324785L,7893214565L,"suresh@gmail.com",50000L);
+        Adet a5 = new Adet("Dhruv",7618942356L,9518476235L,"patel@gmail.com",50000L);
+        Adet a6 = new Adet("Ram",1679845236L,9876543210L,"abc@gmail.com",6000L);
+        Adet a7 = new Adet("Shyam",9638527410L,1234567890L,"ss@gmail.com",6000L);
+        Adet a8 = new Adet("Ramesh",7418529636L,9517538624L,"ramesh@gmail.com",6000L);
+        Adet a9 = new Adet("Ram",7569843210L,7893214565L,"suresh@gmail.com",6000L);
+        Adet a10 = new Adet("Dhruv",9856374120L,9518476235L,"patel@gmail.com",6000L);
+        
+        ArrayList<Adet> adetails = new ArrayList<>();
+        adetails.add(a1);
+        adetails.add(a2);
+        adetails.add(a3);
+        adetails.add(a4);
+        adetails.add(a5);
+        adetails.add(a6);
+        adetails.add(a7);
+        adetails.add(a8);
+        adetails.add(a9);
+        adetails.add(a10);
+        
+        System.out.println(adetails);
+    }
+}
+class Main{
+    public static void main(String args[]) throws Exception {
+        
+        
+        
+        Det d1 = new Det("Ram","abc@gmail.com","123");
+        Det d2 = new Det("Shyam","ss@gmail.com","ss124");
+        Det d3 = new Det("Ramesh","ramesh@gmail.com","ramesh1814");
+        Det d4 = new Det("Suresh","suresh@gmail.com","srs123");
+        Det d5 = new Det("Dhruv","patel@gmail.com","dp758");
+        
+        
+        
+        ArrayList<Det> details = new ArrayList<>();
+        
+        details.add(d1);
+        details.add(d2);
+        details.add(d3);
+        details.add(d4);
+        details.add(d5);
+        
+        String a = "Ram";
+        if (details.get(0).name == a){
+            System.out.println("Hello");
+        }
+        // System.out.println("\n"+details.get(1).name);
+        // System.out.println(details);
+        
+        Window w = new Window();
+        w.wind1();
+        
+        BufferedReader bf = new BufferedReader (new InputStreamReader (System.in));
+        Scanner s1 = new Scanner(System.in);
+        int ch1;
+        ch1=s1.nextInt();
+        
+        // Sign in
+        
+        if (ch1==1){
+            System.out.println("Enter your email:- ");
+            String email1=bf.readLine();
+            
+            System.out.println("Enter Password:- ");
+            String b=bf.readLine();
+            
+            for(int i=0;i<5;i++)
+            {
+                if (details.get(i).email == "abc@gmail.com")
+                {
+                   if (details.get(i).pass == "123")
+                    {
+                        System.out.println("\n");
+                        System.out.println("\nWelcome "+details.get(i).name+" !!!");
+                        System.out.println("\n");
+                        w.wind2();
+                    }
+                    else
+                    {
+                        System.out.println("Password is INCORRECT !!!");
+                        w.wind1();
+                    }
+                    break;
+                    
+                }
+                else
+                {
+                    if (i==4)
+                    {
+                        System.out.println("Account not Registered !!!");
+                        break;
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        // Exit
+        
+        else if (ch1==2){
+            System.out.println("Thank You for visiting us !!!");
+            // break;
+        }
+        
+        else{
+            System.out.println("Please Enter a Valid Choice !!!");
+            w.wind1();
+            // break;
+        }
+    }
+}
