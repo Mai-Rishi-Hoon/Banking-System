@@ -3,23 +3,17 @@ import java.io.*;
 class Window{
     public void wind1(){
         System.out.println("Welcome to Banking System !!!");
-        // System.out.println("1. Sign Up");
         System.out.println("1. Sign In");
-        // System.out.println("3. Delete Account");
         System.out.println("2. Exit");
-        System.out.println("Enter your choice:- ");
     }
 
-    public void wind2(){
+    public void wind2() throws Exception{
         System.out.println("Welcome to Banking System !!!\n");
-        // System.out.println("1. Create Bank Account");
-        // System.out.println("2. Delete Bank Account");
         System.out.println("1. Check Bank Account Details");
         System.out.println("2. Deposit Money");
         System.out.println("3. Withdraw Money");
         System.out.println("4. Transfer Money");
-        System.out.println("5. Exit"); 
-        // System.out.println("Enter your choice:- ");  
+        System.out.println("5. Exit");   
         Outline o = new Outline();
         o.wind2();
         
@@ -54,14 +48,16 @@ class Adet{
         this.phno=phno;
         this.email=email;
         this.bal=bal;
-        System.out.println("Name:- "+name+"Accno:- "+accno+"Phno:- "+phno+"Email:- "+email+"Bal:- "+bal);
+        // System.out.println("Name:- "+name+" Accno:- "+accno+" Phno:- "+phno+" Email:- "+email+" Bal:- "+bal);
     }
 }
 
 class Outline
 {
-    public void wind2()
+    public void wind2() throws Exception
     {
+        Window w = new Window();
+        BufferedReader bf1 = new BufferedReader (new InputStreamReader (System.in));
         Adet a1 = new Adet("Ram",1234567890L,9876543210L,"abc@gmail.com",50000L);
         Adet a2 = new Adet("Shyam",9876543210L,1234567890L,"ss@gmail.com",50000L);
         Adet a3 = new Adet("Ramesh",9713685249L,9517538624L,"ramesh@gmail.com",50000L);
@@ -85,7 +81,76 @@ class Outline
         adetails.add(a9);
         adetails.add(a10);
         
-        System.out.println(adetails);
+        Scanner s1 = new Scanner(System.in);
+        System.out.println("Enter your choice :- ");
+        int ch2 = s1.nextInt();
+        
+        if (ch2 == 1)
+        {
+            System.out.println("Enter name:- ");
+            String name = bf1.readLine();
+            System.out.println("Enter Account Number:- ");
+            long accno = Long.parseLong(bf1.readLine());
+            
+            for(int i=0;i<10;i++)
+            {
+                String n = adetails.get(i).name;
+                if(n == name){
+                    for (int j=0;j<10;j++)
+                    {
+                        long ac = adetails.get(j).accno;
+                        if(ac == accno){
+                            System.out.println("Name :- "+adetails.get(j).name);
+                            System.out.println("Account Number:- "+adetails.get(j).accno);
+                            System.out.println("Phone Number:- "+adetails.get(j).phno);
+                            System.out.println("Email:- "+adetails.get(j).email);
+                            System.out.println("Balance:- "+adetails.get(j).bal);
+                        }
+                        else{
+                            if (j==9){
+                                System.out.println("Account Number INCORRECT !!!");
+                                w.wind2();
+                            }
+                        }
+                    }
+                }
+                else{
+                    if (i==9)
+                    {
+                        System.out.println("Name not Registered !!!");
+                        w.wind2();
+                    }
+                }
+            }
+            
+            
+        }
+        
+        else if (ch == 2)
+        {
+            System.out.println("Enter Name:- ");
+            String name = bf1.readLine();
+            System.out.println("Enter Account Number:- ");
+            long accno = Long.parseLong(bf1.readLine());
+            System.out.println("Enter Amount:- ");
+            long add = Long.parseLong(bf1.readLine());
+            
+            for(int i=0;i<10;i++)
+            {
+                String n = adetails.get(i).name;
+                if(n == name)
+                {
+                    for(int j=0;j<10;j++)
+                    {
+                        long ac = adetails.get(j).accno;
+                        if(ac == accno)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 class Main{
@@ -121,8 +186,8 @@ class Main{
         
         BufferedReader bf = new BufferedReader (new InputStreamReader (System.in));
         Scanner s1 = new Scanner(System.in);
-        int ch1;
-        ch1=s1.nextInt();
+        System.out.println("Enter your choice:- ");
+        int ch1=s1.nextInt();
         
         // Sign in
         
