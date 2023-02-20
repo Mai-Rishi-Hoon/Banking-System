@@ -81,6 +81,7 @@ class Outline
         adetails.add(a9);
         adetails.add(a10);
         
+        // System.out.println(adetails.get(1).bal=);
         Scanner s1 = new Scanner(System.in);
         System.out.println("Enter your choice :- ");
         int ch2 = s1.nextInt();
@@ -95,7 +96,9 @@ class Outline
             for(int i=0;i<10;i++)
             {
                 String n = adetails.get(i).name;
-                if(n == name){
+                System.out.println(n);
+                System.out.println(name);
+                if(n.equals(name)){
                     for (int j=0;j<10;j++)
                     {
                         long ac = adetails.get(j).accno;
@@ -126,19 +129,78 @@ class Outline
             
         }
         
-        else if (ch == 2)
+        else if (ch2 == 2)
         {
             System.out.println("Enter Name:- ");
             String name = bf1.readLine();
             System.out.println("Enter Account Number:- ");
             long accno = Long.parseLong(bf1.readLine());
-            System.out.println("Enter Amount:- ");
+            System.out.println("Enter Amount you want to Deposit:- ");
             long add = Long.parseLong(bf1.readLine());
             
             for(int i=0;i<10;i++)
             {
                 String n = adetails.get(i).name;
-                if(n == name)
+                if(n.equals(name))
+                {
+                    for(int j=0;j<10;j++)
+                    {
+                        long ac = adetails.get(j).accno;
+                        if(ac == accno)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+        else if (ch2 == 3)
+        {
+            System.out.println("Enter Name:- ");
+            String name = bf1.readLine();
+            System.out.println("Enter Account Number:- ");
+            long accno = Long.parseLong(bf1.readLine());
+            System.out.println("Enter Amount you want to Withdraw:- ");
+            long draw = Long.parseLong(bf1.readLine());
+            
+            for(int i=0;i<10;i++)
+            {
+                String n = adetails.get(i).name;
+                if(n.equals(name))
+                {
+                    for(int j=0;j<10;j++)
+                    {
+                        long ac = adetails.get(j).accno;
+                        if(ac == accno)
+                        {
+                            long ba = adetails.get(j).bal;
+                            if(ba < draw)
+                            {
+                                System.out.println("Insufficient Balance !!!");
+                            }
+                            else{
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        else if (ch2 == 4)
+        {
+            System.out.println("Enter Name:- ");
+            String name = bf1.readLine();
+            System.out.println("Enter Account Number:- ");
+            long accno = Long.parseLong(bf1.readLine());
+            System.out.println("Enter Amount you want to Transfer:- ");
+            long add = Long.parseLong(bf1.readLine());
+            
+            for(int i=0;i<10;i++)
+            {
+                String n = adetails.get(i).name;
+                if(n.equals(name))
                 {
                     for(int j=0;j<10;j++)
                     {
@@ -180,9 +242,9 @@ class Main{
         }
         // System.out.println("\n"+details.get(1).name);
         // System.out.println(details);
-        
+        Outline o = new Outline();
         Window w = new Window();
-        w.wind1();
+        w.wind2();
         
         BufferedReader bf = new BufferedReader (new InputStreamReader (System.in));
         Scanner s1 = new Scanner(System.in);
@@ -193,16 +255,18 @@ class Main{
         
         if (ch1==1){
             System.out.println("Enter your email:- ");
-            String email1=bf.readLine();
+            String email=bf.readLine();
             
             System.out.println("Enter Password:- ");
-            String b=bf.readLine();
+            String pass=bf.readLine();
             
             for(int i=0;i<5;i++)
             {
-                if (details.get(i).email == "abc@gmail.com")
+                String n = details.get(i).email;
+                if (n.equals(email))
                 {
-                   if (details.get(i).pass == "123")
+                    String p = details.get(i).pass;
+                   if (p.equals(pass))
                     {
                         System.out.println("\n");
                         System.out.println("\nWelcome "+details.get(i).name+" !!!");
