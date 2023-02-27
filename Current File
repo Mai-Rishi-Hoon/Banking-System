@@ -50,6 +50,10 @@ class Adet{
         this.bal=bal;
         // System.out.println("Name:- "+name+" Accno:- "+accno+" Phno:- "+phno+" Email:- "+email+" Bal:- "+bal);
     }
+    
+    public void setBal(long bal){
+        this.bal=bal;
+    }
 }
 
 class Outline
@@ -88,17 +92,13 @@ class Outline
         
         if (ch2 == 1)
         {
+            System.out.println(adetails.get(0).bal);
             System.out.println("Enter name:- ");
             String name = bf1.readLine();
             System.out.println("Enter Account Number:- ");
             long accno = Long.parseLong(bf1.readLine());
             
-            for(int i=0;i<10;i++)
-            {
-                String n = adetails.get(i).name;
-                System.out.println(n);
-                System.out.println(name);
-                if(n.equals(name)){
+            
                     for (int j=0;j<10;j++)
                     {
                         long ac = adetails.get(j).accno;
@@ -108,6 +108,7 @@ class Outline
                             System.out.println("Phone Number:- "+adetails.get(j).phno);
                             System.out.println("Email:- "+adetails.get(j).email);
                             System.out.println("Balance:- "+adetails.get(j).bal);
+                            break;
                         }
                         else{
                             if (j==9){
@@ -116,15 +117,7 @@ class Outline
                             }
                         }
                     }
-                }
-                else{
-                    if (i==9)
-                    {
-                        System.out.println("Name not Registered !!!");
-                        w.wind2();
-                    }
-                }
-            }
+                
             
             
         }
@@ -138,21 +131,22 @@ class Outline
             System.out.println("Enter Amount you want to Deposit:- ");
             long add = Long.parseLong(bf1.readLine());
             
-            for(int i=0;i<10;i++)
-            {
-                String n = adetails.get(i).name;
-                if(n.equals(name))
-                {
+           
+                
                     for(int j=0;j<10;j++)
                     {
                         long ac = adetails.get(j).accno;
+                        
                         if(ac == accno)
                         {
-                            
+                            long ac1 = adetails.get(j).bal;
+                            long ad = ac1+add;
+                            adetails.get(j).setBal(ad);
+                            System.out.println(adetails.get(j).bal);
                         }
                     }
-                }
-            }
+                
+            
         }
         
         else if (ch2 == 3)
@@ -164,11 +158,6 @@ class Outline
             System.out.println("Enter Amount you want to Withdraw:- ");
             long draw = Long.parseLong(bf1.readLine());
             
-            for(int i=0;i<10;i++)
-            {
-                String n = adetails.get(i).name;
-                if(n.equals(name))
-                {
                     for(int j=0;j<10;j++)
                     {
                         long ac = adetails.get(j).accno;
@@ -180,12 +169,15 @@ class Outline
                                 System.out.println("Insufficient Balance !!!");
                             }
                             else{
-                                
+                                long ac1 = adetails.get(j).bal;
+                                long ad = ac1-draw;
+                                adetails.get(j).setBal(ad);
+                                System.out.println(adetails.get(j).bal);
                             }
                         }
                     }
-                }
-            }
+                
+            
         }
         
         else if (ch2 == 4)
