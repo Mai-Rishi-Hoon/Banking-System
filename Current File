@@ -270,23 +270,45 @@ class Outline
         {
             System.out.println("Enter Name:- ");
             String name = bf1.readLine();
-            System.out.println("Enter Account Number:- ");
+            System.out.println("Enter Account Number from which you want to Transfer:- ");
             long accno = Long.parseLong(bf1.readLine());
+            System.out.println("Enter Account Number to which you want to Transfer:- ");
+            long accno1 = Long.parseLong(bf1.readLine());
             System.out.println("Enter Amount you want to Transfer:- ");
             long add = Long.parseLong(bf1.readLine());
             
             for(int i=0;i<10;i++)
             {
-                String n = adetails.get(i).name;
-                if(n.equals(name))
+                long n = adetails.get(i).accno;
+                if(n == accno)
                 {
                     for(int j=0;j<10;j++)
                     {
                         long ac = adetails.get(j).accno;
-                        if(ac == accno)
+                        if(ac == accno1)
                         {
-                            
+                            long ac1 = adetails.get(i).bal;
+                            long ac2 = adetails.get(j).bal;
+                            long ad = ac2+add;
+                            long ad1 = ac1-add;
+                            adetails.get(j).setBal(ad);
+                            adetails.get(i).setBal(ad1);
+                            System.out.println("\n");
+                            System.out.println("Amount Transfered Succesfully !!!");
+                            break;
                         }
+                        else{
+                            if(j == 9){
+                                System.out.println("Account Number 2 doesn't exists !!!");
+                            }
+                        }
+                    }
+                    break;
+                }
+                else{
+                    if(i == 9)
+                    {
+                        System.out.println("Account Number 1 doesn't exists !!!");
                     }
                 }
             }
