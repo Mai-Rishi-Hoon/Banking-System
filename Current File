@@ -1,24 +1,5 @@
 import java.util.*;
 import java.io.*;
-class Window{
-    public void wind1(){
-        System.out.println("Welcome to Banking System !!!");
-        System.out.println("1. Sign In");
-        System.out.println("2. Exit");
-    }
-
-    public void wind2() throws Exception{
-        System.out.println("Welcome to Banking System !!!\n");
-        System.out.println("1. Check Bank Account Details");
-        System.out.println("2. Deposit Money");
-        System.out.println("3. Withdraw Money");
-        System.out.println("4. Transfer Money");
-        System.out.println("5. Exit");   
-        Outline o = new Outline();
-        o.wind2();
-        
-    }
-}
 
 class Det{
     String name;
@@ -29,7 +10,6 @@ class Det{
         this.name=name;
         this.email=email;
         this.pass=pass;
-        System.out.println("Name;- "+name+" Email:- "+email+" Pass:- "+pass);
     }
     
 }
@@ -48,9 +28,9 @@ class Adet{
         this.phno=phno;
         this.email=email;
         this.bal=bal;
-        // System.out.println("Name:- "+name+" Accno:- "+accno+" Phno:- "+phno+" Email:- "+email+" Bal:- "+bal);
     }
     
+    // Setter Method
     public void setBal(long bal){
         this.bal=bal;
     }
@@ -58,10 +38,96 @@ class Adet{
 
 class Outline
 {
+    public void wind1() throws Exception
+    {
+        Det d1 = new Det("Ram","abc@gmail.com","123");
+        Det d2 = new Det("Shyam","ss@gmail.com","ss124");
+        Det d3 = new Det("Ramesh","ramesh@gmail.com","ramesh1814");
+        Det d4 = new Det("Suresh","suresh@gmail.com","srs123");
+        Det d5 = new Det("Dhruv","patel@gmail.com","dp758");
+        
+        ArrayList<Det> details = new ArrayList<>();
+        
+        details.add(d1);
+        details.add(d2);
+        details.add(d3);
+        details.add(d4);
+        details.add(d5);
+        
+        Outline o = new Outline();
+        
+        BufferedReader bf = new BufferedReader (new InputStreamReader (System.in));
+        // Scanner s1 = new Scanner(System.in);
+        while(true)
+        {
+            
+            System.out.println("1. Sign In");
+            System.out.println("2. Exit");
+            System.out.println("Enter your choice:- ");
+            int ch1=Integer.parseInt(bf.readLine());
+        
+            // Sign in
+        
+            if (ch1==1){
+                System.out.println("Enter your email:- ");
+                String email=bf.readLine();
+            
+                System.out.println("Enter Password:- ");
+                String pass=bf.readLine();
+            
+                for(int i=0;i<5;i++)
+                {
+                    String n = details.get(i).email;
+                    if (n.equals(email))
+                    {
+                        String p = details.get(i).pass;
+                        if (p.equals(pass))
+                        {
+                            System.out.println("\n");
+                            System.out.println("\nWelcome "+details.get(i).name+" !!!");
+                            System.out.println("\n");
+                            o.wind2();
+                            break;
+                        }
+                        else
+                        {
+                            System.out.println("Password is INCORRECT !!!\n");
+                            continue;
+                        }
+                        // break;
+                    
+                    }
+                    else
+                    {
+                        if (i==4)
+                        {
+                            System.out.println("Account not Registered !!!\n");
+                            continue;
+                        }
+                    
+                    }
+                }
+            
+            }
+        
+            // Exit
+        
+            else if (ch1==2){
+                System.out.println("Thank You for visiting us !!!");
+                break;
+            }
+        
+            else{
+                System.out.println("Please Enter a Valid Choice !!!");
+                continue;
+            }
+        }
+    }
+    
     public void wind2() throws Exception
     {
-        Window w = new Window();
         BufferedReader bf1 = new BufferedReader (new InputStreamReader (System.in));
+        
         Adet a1 = new Adet("Ram",1234567890L,9876543210L,"abc@gmail.com",50000L);
         Adet a2 = new Adet("Shyam",9876543210L,1234567890L,"ss@gmail.com",50000L);
         Adet a3 = new Adet("Ramesh",9713685249L,9517538624L,"ramesh@gmail.com",50000L);
@@ -85,14 +151,18 @@ class Outline
         adetails.add(a9);
         adetails.add(a10);
         
-        // System.out.println(adetails.get(1).bal=);
-        Scanner s1 = new Scanner(System.in);
+        while(true){
+        System.out.println("\n");
+        System.out.println("1. Check Bank Account Details");
+        System.out.println("2. Deposit Money");
+        System.out.println("3. Withdraw Money");
+        System.out.println("4. Transfer Money");
+        System.out.println("5. Exit");
         System.out.println("Enter your choice :- ");
-        int ch2 = s1.nextInt();
+        int ch2 = Integer.parseInt(bf1.readLine());
         
         if (ch2 == 1)
         {
-            System.out.println(adetails.get(0).bal);
             System.out.println("Enter name:- ");
             String name = bf1.readLine();
             System.out.println("Enter Account Number:- ");
@@ -103,7 +173,7 @@ class Outline
                     {
                         long ac = adetails.get(j).accno;
                         if(ac == accno){
-                            System.out.println("Name :- "+adetails.get(j).name);
+                            System.out.println("\nName :- "+adetails.get(j).name);
                             System.out.println("Account Number:- "+adetails.get(j).accno);
                             System.out.println("Phone Number:- "+adetails.get(j).phno);
                             System.out.println("Email:- "+adetails.get(j).email);
@@ -113,7 +183,7 @@ class Outline
                         else{
                             if (j==9){
                                 System.out.println("Account Number INCORRECT !!!");
-                                w.wind2();
+                                continue;
                             }
                         }
                     }
@@ -142,7 +212,15 @@ class Outline
                             long ac1 = adetails.get(j).bal;
                             long ad = ac1+add;
                             adetails.get(j).setBal(ad);
-                            System.out.println(adetails.get(j).bal);
+                            System.out.println("/n");
+                            System.out.println("Amount DEPOSITED Succesfully !!!\n");
+                            break;
+                        }
+                        else{
+                            if (j==9){
+                                System.out.println("Account Number INCORRECT !!!");
+                                continue;
+                            }
                         }
                     }
                 
@@ -172,7 +250,15 @@ class Outline
                                 long ac1 = adetails.get(j).bal;
                                 long ad = ac1-draw;
                                 adetails.get(j).setBal(ad);
-                                System.out.println(adetails.get(j).bal);
+                                System.out.println("/n");
+                                System.out.println("Amount DEBITED Succesfully !!!\n");
+                                break;
+                            }
+                        }
+                        else{
+                            if (j==9){
+                                System.out.println("Account Number INCORRECT !!!");
+                                continue;
                             }
                         }
                     }
@@ -205,98 +291,24 @@ class Outline
                 }
             }
         }
+        
+        else if (ch2 == 5)
+        {
+            System.out.println("Returning to Login Page !!!\n");
+            break;
+        }
+        
+        else{
+            System.out.println("PLease enter a CORRECT choice !!!");
+            continue;
+        }
+        }
     }
 }
 class Main{
     public static void main(String args[]) throws Exception {
-        
-        
-        
-        Det d1 = new Det("Ram","abc@gmail.com","123");
-        Det d2 = new Det("Shyam","ss@gmail.com","ss124");
-        Det d3 = new Det("Ramesh","ramesh@gmail.com","ramesh1814");
-        Det d4 = new Det("Suresh","suresh@gmail.com","srs123");
-        Det d5 = new Det("Dhruv","patel@gmail.com","dp758");
-        
-        
-        
-        ArrayList<Det> details = new ArrayList<>();
-        
-        details.add(d1);
-        details.add(d2);
-        details.add(d3);
-        details.add(d4);
-        details.add(d5);
-        
-        String a = "Ram";
-        if (details.get(0).name == a){
-            System.out.println("Hello");
-        }
-        // System.out.println("\n"+details.get(1).name);
-        // System.out.println(details);
         Outline o = new Outline();
-        Window w = new Window();
-        w.wind2();
-        
-        BufferedReader bf = new BufferedReader (new InputStreamReader (System.in));
-        Scanner s1 = new Scanner(System.in);
-        System.out.println("Enter your choice:- ");
-        int ch1=s1.nextInt();
-        
-        // Sign in
-        
-        if (ch1==1){
-            System.out.println("Enter your email:- ");
-            String email=bf.readLine();
-            
-            System.out.println("Enter Password:- ");
-            String pass=bf.readLine();
-            
-            for(int i=0;i<5;i++)
-            {
-                String n = details.get(i).email;
-                if (n.equals(email))
-                {
-                    String p = details.get(i).pass;
-                   if (p.equals(pass))
-                    {
-                        System.out.println("\n");
-                        System.out.println("\nWelcome "+details.get(i).name+" !!!");
-                        System.out.println("\n");
-                        w.wind2();
-                    }
-                    else
-                    {
-                        System.out.println("Password is INCORRECT !!!");
-                        w.wind1();
-                    }
-                    break;
-                    
-                }
-                else
-                {
-                    if (i==4)
-                    {
-                        System.out.println("Account not Registered !!!");
-                        break;
-                    }
-                    
-                }
-            }
-            
-        }
-        
-        // Exit
-        
-        else if (ch1==2){
-            System.out.println("Thank You for visiting us !!!");
-            // break;
-        }
-        
-        else{
-            System.out.println("Please Enter a Valid Choice !!!");
-            w.wind1();
-            // break;
-        }
+        System.out.println("Welcome to Banking System !!!");
+        o.wind1();
     }
 }
